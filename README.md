@@ -26,9 +26,14 @@ A utility that applies modifications to unlock enterprise features in the Thunde
 
 **Use at your own risk.** By using this software, you acknowledge that you understand it is for educational purposes only and you assume all responsibility.
 
-## Supported Version
+## Supported Versions
 
-This patcher only works with **Thunder Client v2.37.5**. Using other versions may cause instability or errors.
+This patcher works with the following Thunder Client versions:
+- **v2.37.5**
+- **v2.37.6**
+- **v2.37.8**
+
+The application will automatically search for all supported versions in your VS Code extensions directory.
 
 ## How to Use
 
