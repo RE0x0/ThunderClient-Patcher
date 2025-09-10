@@ -70,7 +70,7 @@ Using this patcher may:
 
 If you encounter issues:
 
-- Ensure you're using Thunder Client v2.37.5
+- Ensure you're using one of the supported Thunder Client versions
 - Restore from backup if any problems occur
 
 **Please use responsibly and consider supporting software developers by purchasing legitimate licenses.**
