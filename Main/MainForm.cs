@@ -17,12 +17,17 @@ namespace ThunderClientPatcher
         private readonly string FUNC_QF_PATCHED_B64 = "JDENCiAgICB2YXIgZSA9IHsNCiAgICAgICAgaXNFcnJvcjogZmFsc2UsDQogICAgICAgIGhhc1N1YnM6IHRydWUsDQogICAgICAgIG9mZmxpbmU6IHRydWUsDQogICAgICAgIHRva2VuOiAiRkFLRVRva2VuQkxBQkxBQkxBIiwNCiAgICAgICAgbmFtZTogIlxuRW50ZXJwcmlzZSBFZGl0aW9uIHwgVW5vZmZpY2lhbCBMaWNlbnNlIFByb3Zpc2lvbmVkIGJ5IEdpdEh1YkBSRTB4MCIsDQogICAgICAgIHJlZmNvZGU6ICJGQ0syMDI1QllQQVNTIiwNCiAgICAgICAgcGxhbjogIkVudGVycHJpc2UgVmVyc2lvbiBMaWZldGltZSAgXG4gUHJvdmlkZWQgQnkgR2l0aHViQFJFMHgwIiwNCiAgICAgICAgZXhwaXJ5OiAiMjA5OS0xMi0zMVQyMzo1OTo1OS45OTlaIg0KICAgIH07DQogICAgcmV0dXJuIGU7DQokMw==";
         private readonly string FUNC_UQ_PATCHED_B64 = "JDEKICAgICAgICAgICAgcmV0dXJuIGguSGEuUGI7CiQz";
 
-        private string _extensionBasePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".vscode", "extensions", "rangav.vscode-thunder-client-2.37.5");
+        private string _extensionBasePath;
+        private const string EXTENSION_PUBLISHER = "rangav";
+        private const string EXTENSION_NAME = "vscode-thunder-client";
 
         private const string PACKAGE_JSON_FILE_NAME = "package.json";
         private const string EXTENSION_JS_PATH = "dist\\extension.js";
+
+        private readonly List<string> _supportedVersions = new List<string>
+        {
+            "2.37.5","2.37.6","2.37.7"
+        };
 
         private string _version;
 
@@ -47,7 +52,7 @@ namespace ThunderClientPatcher
         {
             try
             {
-                if (!ValidateExtensionPath() && !GetExtensionRootDirectory())
+                if (!FindExtension() && !GetExtensionRootDirectory())
                 {
                     SetStatus("Thunder Client Not Found");
                     return;
@@ -62,6 +67,28 @@ namespace ThunderClientPatcher
             {
                 ShowErrorMessage($"An error occurred: {ex.Message}");
             }
+        }
+        private bool FindExtension()
+        {
+            string extensionsPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                ".vscode", "extensions");
+
+            if (!Directory.Exists(extensionsPath))
+                return false;
+
+            foreach (string version in _supportedVersions)
+            {
+                string extensionDir = Path.Combine(extensionsPath, $"{EXTENSION_PUBLISHER}.{EXTENSION_NAME}-{version}");
+                if (Directory.Exists(extensionDir) &&
+                    File.Exists(Path.Combine(extensionDir, PACKAGE_JSON_FILE_NAME)))
+                {
+                    _extensionBasePath = extensionDir;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private bool ValidateExtensionPath()
@@ -173,20 +200,26 @@ namespace ThunderClientPatcher
 
         private void btnPatch_Click(object sender, EventArgs e)
         {
-            if (_version != "2.37.5")
+            if (!_supportedVersions.Contains(_version))
             {
-                MessageBox.Show(
+                var msgresult = MessageBox.Show(
         "❌ Unsupported Version Detected!\n\n" +
         "This patcher only works with Thunder Client v2.37.5.\n\n" +
         "Please download the supported version from the official source or\n" +
-        "Download the supported version from my Github repo Github@RE0x0"
+        "Download the supported version from my Github repo Github@RE0x0\n" +
+        "Do you want to proceed anyway?"
 , "Unsupported Version",
-        MessageBoxButtons.OK,
+        MessageBoxButtons.YesNo,
         MessageBoxIcon.Warning
     );
-                SetStatus("Unsupported version Please Download");
-                return;
+                if (msgresult != DialogResult.Yes)
+                {
+                    SetStatus("Operation cancelled by user");
+                    return;
+                }
+
             }
+
 
             bool result = Patch();
             SetStatus(result ? "Patched successfully" : "Something went wrong!");
@@ -216,5 +249,7 @@ namespace ThunderClientPatcher
             Process.Start("https://github.com/RE0x0");
 
         }
+
+
     }
 }
