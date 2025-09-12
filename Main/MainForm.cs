@@ -204,7 +204,7 @@ namespace ThunderClientPatcher
             {
                 var msgresult = MessageBox.Show(
         "❌ Unsupported Version Detected!\n\n" +
-        "This patcher only works with Thunder Client v2.37.5.\n\n" +
+        "This patcher only works with Thunder Client v2.37.5-8.\n\n" +
         "Please download the supported version from the official source or\n" +
         "Download the supported version from my Github repo Github@RE0x0\n" +
         "Do you want to proceed anyway?"
