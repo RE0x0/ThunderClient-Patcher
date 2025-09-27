@@ -1,0 +1,67 @@
+# Visual Studio build files
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio auto-generated files
+*.vspscc
+*.vssscc
+.vs/
+*.dbmdl
+
+# Resharper and Rider
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet packages
+*.nupkg
+# NuGet restore
+packages/
+# DotCover
+*.dotCover
+
+# Build results
+*.exe
+*.dll
+*.pdb
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# Others
+*.log
+*.tmp
+*.bak
+
+# User-specific files
+*.swp
+*.swo
+
+# Windows Installer files
+*.msi
+*.msm
+*.msp
+
+# Test results
+TestResults/
+*.trx
+
+# Web publish
+publish/
+*.Publish.xml
+
+# Backup files
+*.bak
+
+# Temporary files
+~$*
