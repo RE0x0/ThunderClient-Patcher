@@ -19,7 +19,7 @@ namespace ThunderClientPatcher
         private const string PACKAGE_JSON_FILE_NAME = "package.json";
         private const string EXTENSION_JS_PATH = "dist\\extension.js";
         private string _version;
-        private string _currentAppVersion = "1.0.0";
+        private string _currentAppVersion = "1.1.0";
         private string _latestAppVersion = "";
         private const string REPO_SETTINGS_URL = "https://raw.githubusercontent.com/RE0x0/ThunderClient-Patcher/refs/heads/main/settings.json";
 
@@ -39,7 +39,7 @@ namespace ThunderClientPatcher
             CheckExtension();
         }
 
-        private async void LoadSettings()
+        private void LoadSettings()
         {
             SetDefaultSettings();
         }
@@ -116,7 +116,7 @@ namespace ThunderClientPatcher
 
             _supportedVersions = new List<string>
             {
-                "2.37.1"
+                "2.37.8"
             };
         }
         private async void CheckExtension()
