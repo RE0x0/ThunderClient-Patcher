@@ -1,0 +1,10 @@
+{
+  "function_replacements": {
+    "static $F(){return g.Yv==this.Mj(m.Ss.Lj)?h.Ba.jb:g.Yv==this.Mj(m.Ss.qj)?h.Ba.Eb:g.Yv==this.Mj(m.Ss.zE)?h.Ba.Sb:g.Yv==this.Mj(m.Ss.LE)?h.Ba.Tb:g.Yv==this.Mj(m.Ss.Bj)?h.Ba.xb:h.Ba.kb}": "static $F(){return h.Ba.xb;}",
+    "static MF(t){var e={isError:!0,hasSubs:!1,offline:!1};try{let n=l.Ej.Gj(t),i=JSON.parse(n);let r=this.TF(i,!0);r.xF?(e.errorMessage=r.pL,e.hasSubs=!1,l.oo.tf(r.pL,r.OF)):(t=i.token,e.token=t,e.name=i.name,e.hasSubs=i.active,e.refcode=i.refcode,e.plan=i.plan,e.offline=i.offline,e.expiry=i.expiry,e.isError=!1)}catch(t){e.errorMessage=h.Rp.Lv}return e}": "static MF(t){var e={isError:false,hasSubs:true,offline:true,token:\"FakeTokenRE0x0\",name:\"\\nEnterprise Edition | Unofficial License Provisioned by GitHub@RE0x0\",refcode:\"TC2025BYPASSLOL\",plan:\"Enterprise Version\",expiry:\"2099-12-31T23:59:59.999Z\"};return e}"
+  },
+  "supported_versions": [
+    "2.37.8"
+  ],
+  "app_version": "1.1.0"
+}
