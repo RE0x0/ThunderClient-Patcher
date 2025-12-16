@@ -28,8 +28,6 @@ A utility that applies modifications to unlock enterprise features in the Thunde
 
 ## Supported Versions
 
-This patcher works with the following Thunder Client versions:
-- **v2.37.8-?**
 The application will automatically search for all supported versions in your VS Code extensions directory.
 
 ## How to Use
